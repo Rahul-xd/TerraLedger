@@ -18,21 +18,37 @@ This project implements a decentralized land registration system with the follow
 - `UserRegistry.sol`: Manages user verification and roles
 - `BaseRegistry.sol`: Base contract with common functionality
 
-## Setup
+## Setup Instructions
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd Land-Registration-Smart-Contract
+```
+
+2. Install dependencies:
 ```bash
 npm install
+````
+
+3. Compile contracts:
+```bash
+npm run compile
 ```
 
-2. Compile contracts:
+4. Run tests:
 ```bash
-npx hardhat compile
+npm test
 ```
 
-3. Run tests:
+5. Start local node:
 ```bash
-npx hardhat test
+npm run node
+```
+
+6. Deploy contracts:
+```bash
+npm run deploy
 ```
 
 ## License
