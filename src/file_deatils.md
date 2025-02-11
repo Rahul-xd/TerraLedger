@@ -1,3 +1,373 @@
+BaseRegistry.sol
+Base contract that provides core functionality for role management and security
+Implements role-based access control (RBAC) with roles like ADMIN, INSPECTOR, USER, VERIFIED_USER
+Handles inspector management (adding/removing land inspectors)
+Contains emergency functions like pause/unpause and emergency withdrawal
+Provides common utilities for pagination and validation
+Key functions include role assignment/revocation, ownership transfer, and inspector management
+UserRegistry.sol
+Manages user registration and verification in the land registration system
+Handles user details including personal info and document verification
+Implements user verification workflow with inspectors
+Tracks unique documents (Aadhar, PAN) to prevent duplicates
+Key features:
+User registration with document verification
+User verification by inspectors
+User rejection handling with cooldown period
+User document updates and city management
+Batch verification capabilities
+LandRegistry.sol
+Core contract for land management and ownership
+Handles land registration, verification, and ownership transfers
+Maintains land history and additional documents
+Implements land sale functionality
+Key features:
+Land registration with unique identifiers
+Land verification by inspectors
+Land ownership transfers
+Document management
+Sale management (putting land on/off sale)
+Land history tracking
+TransactionRegistry.sol
+Manages land purchase transactions and requests
+Handles the complete workflow of land purchase from request to completion
+Tracks transaction history and market metrics
+Key features:
+Purchase request creation and management
+Payment processing
+Transaction history tracking
+Market volume tracking
+Withdrawal management
+StringUtils.sol
+Utility library for string operations and validation
+Provides functions for:
+Email validation
+Aadhar number validation
+PAN number validation
+String comparison and length validation
+The system follows a modular architecture where:
+
+BaseRegistry provides core functionality
+UserRegistry handles user management
+LandRegistry manages land records
+TransactionRegistry handles purchases
+StringUtils provides utility functions
+All contracts work together to create a complete land registration and transfer system with proper security, validation, and tracking mechanisms.
+
+
+Home.jsx
+Located in /src/components/pages/Home.jsx
+Main landing page component using React and Framer Motion
+Features:
+Modern UI with gradient styling
+Hero section with animated features
+Wallet connection handling
+Role-based welcome section
+Interactive feature cards
+Responsive design with CSS-in-JS
+Key components: WelcomeSection, ConnectWalletSection, FeatureCard
+ipfsUtils.js
+Located in /src/utils/ipfsUtils.js
+Handles IPFS file operations
+Key functions:
+bytesToIpfsHash: Converts bytes32 to IPFS hash format
+ipfsHashToBytes32: Converts IPFS hash to bytes32
+getIpfsUrl: Generates IPFS gateway URLs
+uploadToIPFS: Handles file uploads to IPFS
+uploadFileAndConvertHash: Combined upload and hash conversion
+contractService.js
+Located in /src/services/contractService.js
+Central service for blockchain contract interactions
+Features:
+Contract initialization and management
+Transaction handling
+Event listeners setup
+Network validation
+Error handling and logging
+useWeb3.js
+Located in /src/core/hooks/useWeb3.js
+Custom React hook for Web3 functionality
+Manages:
+Wallet connections
+Network switching
+Provider and signer state
+Connection status
+Error handling
+useUser.js
+Located in /src/core/hooks/useUser.js
+Custom hook for user-related operations
+Features:
+Land management
+Transaction handling
+User stats
+Market operations
+Event handling
+useInspector.js
+Located in /src/core/hooks/useInspector.js
+Hook for inspector-specific functionality
+Handles:
+User verification
+Land verification
+Dispute management
+Inspector stats
+Role validation
+AuthContext.jsx
+Located in /src/core/context/AuthContext.jsx
+Global authentication context
+Manages:
+User authentication state
+Contract initialization
+Role-based access
+Session management
+Event handling
+ProtectedRoute.jsx
+Located in /src/components/auth/ProtectedRoute.jsx
+Route protection component
+Features:
+Role-based access control
+Authentication verification
+Redirect handling
+Loading states
+Error handling
+App.jsx
+Located in /src/App.jsx
+Main application component
+Features:
+Route configuration
+Lazy loading
+Error boundaries
+Protected routes setup
+Toast notifications
+config/index.js
+Located in /src/core/config/index.js
+Central configuration file
+Contains:
+Contract addresses
+IPFS configuration
+Role definitions
+Route mappings
+Access control logic
+Cache configuration
+Constants and enums
+This application appears to be a comprehensive land registration system built on blockchain technology, with role-based access control and extensive features for land management, verification, and transactions.
+
+
+Navbar.jsx
+Purpose: Main navigation component
+Key Features:
+Dynamic menu based on user role
+Account info display with address and role
+Logout functionality
+Responsive design with modern styling
+Role-based navigation links
+Clean, modern UI with hover effects
+useRoles.js
+Purpose: Role management hook
+Key Features:
+Role determination and validation
+Access control functions
+Route redirection logic
+Event handling for role-specific events
+Role hierarchy management
+Comprehensive logging
+Layout.jsx
+Purpose: Main layout wrapper component
+Key Features:
+Consistent page structure
+Loading state management
+Navbar integration
+Error boundary implementation
+Responsive design
+Clean mounting/unmounting
+UserVerification.jsx
+Purpose: Inspector interface for verifying users
+Key Features:
+User verification workflow
+Document verification
+Rejection handling with reasons
+Real-time updates
+Detailed user information display
+Error handling and logging
+LandVerification.jsx
+Purpose: Inspector interface for verifying properties
+Key Features:
+Land verification workflow
+Document management
+Property details display
+Verification/rejection handling
+Status tracking
+IPFS integration
+InspectorDashboard.jsx
+Purpose: Main dashboard for inspectors
+Key Features:
+Statistics overview
+Quick actions
+Real-time updates
+Task tracking
+Navigation to verification pages
+Clean, modern UI
+Dashboard.jsx
+Purpose: User dashboard component
+Key Features:
+Property overview
+Transaction tracking
+Market metrics
+Quick actions
+Stats display
+Real-time updates
+UpdateLandModal.jsx
+Purpose: Modal for updating land details
+Key Features:
+Price updates
+Document management
+Metadata handling
+Validation
+IPFS integration
+Error handling
+MyLands.jsx
+Purpose: User's property management
+Key Features:
+Property listing
+Sale management
+Document viewing
+Property updates
+Status tracking
+IPFS integration
+AddLandModal.jsx
+Purpose: Modal for adding new properties
+Key Features:
+Form validation
+Document upload
+Price handling in ETH
+Property details validation
+IPFS integration
+Error handling
+Field validation with Yup
+Clean UI with proper feedback
+Each file is structured with modern React practices, includes comprehensive error handling, and follows a consistent styling approach. They work together to provide a complete land registration system with role-based access control and blockchain integration.
+
+I'll explain each main page and its functionality:
+
+Home Page (Home.jsx)
+Main landing page of the application
+Features:
+Hero section with gradient background
+Connect wallet functionality
+Dynamic welcome message based on user role
+Feature cards showcasing platform capabilities
+Smart contract initialization checks
+Metamask integration
+Network validation
+User Dashboard (Dashboard.jsx)
+Central hub for verified users
+Features:
+Statistics overview (properties, transactions, etc.)
+Quick action buttons
+Recent properties display
+Transaction requests overview
+Market metrics
+Real-time updates through contract events
+Interactive cards for navigation
+Inspector Dashboard (InspectorDashboard.jsx)
+Control center for land inspectors
+Features:
+Pending verifications count
+Property verification requests
+Active disputes overview
+Quick access to verification tasks
+Real-time updates
+Status tracking
+Land Market (LandMarket.jsx)
+Property marketplace
+Features:
+Advanced filtering (price, area, location)
+Property listings with details
+Document verification
+Purchase request system
+Real-time price updates
+Interactive property cards
+Status tracking for requests
+Land Verification (LandVerification.jsx)
+Inspector interface for verifying properties
+Features:
+Property details review
+Document verification
+Approval/Rejection workflow
+Feedback system
+Status updates
+IPFS document access
+User Verification (UserVerification.jsx)
+Inspector interface for verifying users
+Features:
+User details review
+Document verification
+KYC process
+Approval/Rejection workflow
+Rejection reason system
+Status tracking
+Registration Page (Register.jsx)
+User registration interface
+Features:
+Form validation
+Document upload
+KYC information collection
+Real-time validation
+Error handling
+Progress tracking
+Information tooltips
+Pending Verification (PendingVerification.jsx)
+Status page for users awaiting verification
+Features:
+Verification status display
+Document review
+Rejection feedback
+Cooldown timer
+Status updates
+Re-registration option
+Each page includes:
+
+Comprehensive error handling
+Loading states
+Responsive design
+Real-time updates
+Contract event listeners
+Role-based access control
+Toast notifications
+Detailed logging
+Clean state management
+The pages work together to create a complete land registration and management system with role-based access and secure blockchain integration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extra information ----
+
 Project Flow:
 
 User Registration and Verification:

@@ -188,6 +188,62 @@ const styles = {
             background: '#DBEAFE',
             transform: 'translateY(-1px)'
         }
+    },
+    modal: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1000,
+        padding: '1rem'
+    },
+    modalContent: {
+        backgroundColor: '#fff',
+        borderRadius: '12px',
+        padding: '2rem',
+        width: '100%',
+        maxWidth: '500px',
+        position: 'relative',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+    },
+    modalTitle: {
+        fontSize: '1.5rem',
+        fontWeight: '600',
+        color: '#1F2937',
+        marginBottom: '1rem'
+    },
+    modalDescription: {
+        fontSize: '1rem',
+        color: '#6B7280',
+        marginBottom: '1.5rem',
+        lineHeight: '1.5'
+    },
+    textarea: {
+        width: '100%',
+        minHeight: '120px',
+        padding: '0.75rem',
+        borderRadius: '8px',
+        border: '2px solid #E5E7EB',
+        marginBottom: '1.5rem',
+        fontSize: '0.95rem',
+        resize: 'vertical',
+        '&:focus': {
+            outline: 'none',
+            borderColor: '#3B82F6',
+            boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
+        }
+    },
+    modalActions: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        gap: '1rem',
+        borderTop: '1px solid #E5E7EB',
+        paddingTop: '1.5rem'
     }
 };
 

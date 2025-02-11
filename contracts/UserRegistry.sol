@@ -121,6 +121,14 @@ contract UserRegistry is BaseRegistry, IVerificationDetails {
         bytes32 _documentHash,
         string memory _email
     ) external {
+        // Add these checks at the start of the function
+        if (usedAadharNumbers[_aadharNumber]) {
+            revert DuplicateAadhar(_aadharNumber);
+        }
+        if (usedPanNumbers[_panNumber]) {
+            revert DuplicatePan(_panNumber);
+        }
+
         // 1. Check if user already exists
         require(
             !verificationDetails[msg.sender].isRegistered,

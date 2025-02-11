@@ -276,7 +276,17 @@ const AddLandModal = ({ onSubmit, onClose }) => {
                 <button
                     type="button"
                     onClick={onClose}
-                    style={getButtonStyle('secondary')}
+                    style={{
+                        marginRight: '1rem',
+                        padding: '0.75rem 1.5rem',
+                        borderRadius: '8px',
+                        fontSize: '0.9375rem',
+                        fontWeight: '600',
+                        border: 'none',
+                        cursor: 'pointer',
+                        backgroundColor: colors.primary.main,
+                        color: colors.text.inverse,
+                    }}
                     disabled={uploading}>
                     Cancel
                 </button>
@@ -284,7 +294,16 @@ const AddLandModal = ({ onSubmit, onClose }) => {
                     type="submit"
                     form="addLandForm"
                     disabled={uploading || !formik.isValid || !formik.dirty}
-                    style={getButtonStyle('primary')}>
+                    style={{
+                        padding: '0.75rem 1.5rem',
+                        borderRadius: '8px',
+                        fontSize: '0.9375rem',
+                        fontWeight: '600',
+                        border: 'none',
+                        cursor: 'pointer',
+                        backgroundColor: colors.primary.main,
+                        color: colors.text.inverse,
+                    }}>
                     {uploading ? '⌛ Processing...' : '✓ Add Property'}
                 </button>
             </div>

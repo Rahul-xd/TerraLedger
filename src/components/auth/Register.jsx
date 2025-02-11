@@ -322,15 +322,33 @@ const Register = () => {
                 age: Number(values.age)
             };
 
-            // 2. Validate document before upload
+            // 2. First check if documents are already in use
+            const isAvailable = await handleContractCall(
+                'userRegistry',
+                'isDocumentAvailable',
+                [formattedValues.aadharNumber, formattedValues.panNumber],
+                { isView: true }
+            );
+
+            if (!isAvailable[0]) {
+                showToast.error('This Aadhar number is already registered with another account');
+                return;
+            }
+
+            if (!isAvailable[1]) {
+                showToast.error('This PAN number is already registered with another account');
+                return;
+            }
+
+            // 3. Validate document before upload
             if (!validateDocument(formattedValues.documentFile)) {
                 throw new Error('Invalid document file');
             }
 
-            // 3. Upload document
+            // 4. Upload document
             const { bytes32Hash } = await uploadFileAndConvertHash(formattedValues.documentFile);
 
-            // 4. Call contract with proper error handling
+            // 5. Call contract with proper error handling
             await handleContractCall(
                 'userRegistry',
                 'registerUser',
@@ -345,23 +363,32 @@ const Register = () => {
                 ]
             );
 
-            // 5. Show success and redirect
+            // 6. Show success and redirect
             showToast.success('Registration successful!');
             await refreshUserStatus();
             navigate(ROUTES.PENDING);
         } catch (error) {
             console.error('Registration error:', error);
 
-            // Extract custom error signature
+            // Extract error message
             const errorMessage = error.message || '';
-            const customError = Object.keys(ERROR_MESSAGES).find(key =>
-                errorMessage.includes(key)
-            );
 
-            showToast.error(
-                ERROR_MESSAGES[customError] ||
-                'Registration failed. Please check your input and try again.'
-            );
+            // Check for specific error types
+            if (errorMessage.includes('DuplicateAadhar')) {
+                showToast.error('This Aadhar number is already registered with another account');
+            } else if (errorMessage.includes('DuplicatePan')) {
+                showToast.error('This PAN number is already registered with another account');
+            } else {
+                // Handle other errors using the general error messages map
+                const customError = Object.keys(ERROR_MESSAGES).find(key =>
+                    errorMessage.includes(key)
+                );
+
+                showToast.error(
+                    ERROR_MESSAGES[customError] ||
+                    'Registration failed. Please check your input and try again.'
+                );
+            }
         } finally {
             setProcessing(false);
         }

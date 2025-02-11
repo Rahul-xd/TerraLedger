@@ -503,6 +503,7 @@ function getButtonVariant(variant, colors) {
         secondary: {
             background: colors.secondary.gradient,
             color: colors.text.inverse,
+            margin: '0 1rem',
             '&:hover': {
                 background: `linear-gradient(135deg, ${colors.secondary.dark} 0%, ${colors.secondary.main} 100%)`,
             }
