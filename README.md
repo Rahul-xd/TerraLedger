@@ -55,15 +55,7 @@ Before setting up the project, ensure you have the following installed:
    npm install --force
    ```
 
-3. **Environment Setup**
-   Create a `.env` file in the root directory:
-   ```env
-   VITE_IPFS_PROJECT_ID=your_ipfs_project_id
-   VITE_IPFS_PROJECT_SECRET=your_ipfs_project_secret
-   VITE_IPFS_DEDICATED_GATEWAY=your_gateway_url
-   ```
-
-4. **Start Local Blockchain**
+3. **Start Local Blockchain**
    Open a new terminal and run:
    ```bash
    # Start Hardhat node
@@ -71,21 +63,21 @@ Before setting up the project, ensure you have the following installed:
    ```
    Keep this terminal running.
 
-5. **Deploy Smart Contracts**
+4. **Deploy Smart Contracts**
    Open another terminal and run:
    ```bash
    # Deploy contracts to local network
    npx hardhat run scripts/deploy.js --network localhost
    ```
 
-6. **Start Development Server**
+5. **Start Development Server**
    In a new terminal:
    ```bash
    # Start the development server
    npm run dev
    ```
 
-7. **Access the Application**
+6. **Access the Application**
    - Open your browser and navigate to `http://localhost:5173`
    - Connect MetaMask to the local network
    - Import test accounts from Hardhat node using private keys
