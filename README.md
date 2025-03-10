@@ -67,7 +67,7 @@ Before setting up the project, ensure you have the following installed:
    Open another terminal and run:
    ```bash
    # Deploy contracts to local network
-   npx hardhat run scripts/deploy.js --network localhost
+   npx hardhat run scripts/deploy.cjs --network localhost
    ```
 
 5. **Start Development Server**
