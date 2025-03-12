@@ -145,7 +145,6 @@ const styles = {
     },
     emptyIcon: {
         fontSize: '4rem',
-        marginBottom: '1.5rem',
         color: '#6B7280',
         background: '#F3F4F6',
         width: '8rem',
